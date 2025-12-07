@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-node3
+  labels:
+    app: worker-node3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-node3
+  template:
+    metadata:
+      name: worker-node3
+      labels:
+        app: worker-node3
+    spec:
+      containers:
+        - name: worker-node3
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+      

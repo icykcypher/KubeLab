@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestrationService", "OrchestrationService\OrchestrationService.csproj", "{5872B5CE-1F09-47F8-895B-6CC2BC8B66FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5872B5CE-1F09-47F8-895B-6CC2BC8B66FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5872B5CE-1F09-47F8-895B-6CC2BC8B66FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5872B5CE-1F09-47F8-895B-6CC2BC8B66FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5872B5CE-1F09-47F8-895B-6CC2BC8B66FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

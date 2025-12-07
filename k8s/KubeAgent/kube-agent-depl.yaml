@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-agent
+  labels:
+    app: kube-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-agent
+  template:
+    metadata:
+      name: kube-agent
+      labels:
+        app: kube-agent
+    spec:
+      containers:
+        - name: kube-agent
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+      

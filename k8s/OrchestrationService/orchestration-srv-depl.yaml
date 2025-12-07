@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestration-srv
+  labels:
+    app: orchestration-srv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchestration-srv
+  template:
+    metadata:
+      name: orchestration-srv
+      labels:
+        app: orchestration-srv
+    spec:
+      containers:
+        - name: orchestration-srv
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+      

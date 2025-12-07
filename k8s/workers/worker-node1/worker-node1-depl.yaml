@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-node1
+  labels:
+    app: worker-node1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-node1
+  template:
+    metadata:
+      name: worker-node1
+      labels:
+        app: worker-node1
+    spec:
+      containers:
+        - name: worker-node1
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+      
