@@ -2,7 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using OrchestrationService.Model.Infrastructure;
 
-namespace OrchestrationService.Model.Domain;
+namespace OrchestrationService.Domain;
 
 public sealed class ScenarioDefinition
 {
