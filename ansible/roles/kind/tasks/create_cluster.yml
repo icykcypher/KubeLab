@@ -1,0 +1,8 @@
+- name: Check if cluster exists
+  ansible.builtin.shell: kind get clusters | grep kubelab
+  register: cluster_exists
+  ignore_errors: yes
+
+- name: Create cluster with 4 nodes
+  ansible.builtin.shell: kind create cluster --name kubelab --config {{ playbook_dir }}/roles/kind/files/kind-config.yaml
+  when: cluster_exists.rc != 0

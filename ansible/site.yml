@@ -1,0 +1,13 @@
+- name: Setup and deploy server
+  hosts: all
+  become: true
+  vars_files:
+    - secrets.yml
+  roles:
+    - common
+    - ssh_hardening
+    - app
+    - docker
+    - kind
+    - master_node
+    - ufw

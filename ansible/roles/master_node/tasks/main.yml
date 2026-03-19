@@ -1,0 +1,63 @@
+---
+- name: Ensure kubeconfig exists for kind cluster
+  shell: kind get kubeconfig --name=kubelab
+  register: kubeconfig
+  changed_when: false
+
+- name: Write kubeconfig to /root/.kube/config
+  copy:
+    content: "{{ kubeconfig.stdout }}"
+    dest: /root/.kube/config
+    mode: '0600'
+
+- name: Deploy MongoDB StatefulSet
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/mongo.yml') | from_yaml }}"
+    wait: yes
+    wait_condition:
+      type: Ready
+      status: "True"
+
+- name: Deploy Redis
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/redis.yml') | from_yaml }}"
+    wait: yes
+
+- name: Deploy RabbitMQ
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/rabbitmq.yml') | from_yaml }}"
+    wait: yes
+
+- name: Deploy .NET Backend
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/backend.yml') | from_yaml }}"
+    wait: yes
+
+- name: Deploy React Frontend
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/frontend.yml') | from_yaml }}"
+    wait: yes
+
+- name: Deploy Ingress NGINX
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/ingress.yml') | from_yaml }}"
+    wait: yes
+
+- name: Deploy Go Orchestrator
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/go-orchestrator.yml') | from_yaml }}"
+    wait: yes

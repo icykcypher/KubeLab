@@ -17,10 +17,9 @@ spec:
     spec:
       containers:
         - name: kube-agent
-          image: nginx
+          image: ghcr.io/icykcypher/kubelab/kube-agent:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
               protocol: TCP
       restartPolicy: Always
-      

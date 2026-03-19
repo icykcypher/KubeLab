@@ -1,40 +1,39 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:64243",
-      "sslPort": 44398
-    }
-  },
   "profiles": {
-    "http": {
+    "Development": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5070",
+      "applicationUrl": "http://localhost:8080",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENV": "Development",
+        "APP_ID": "users-api",
+        "APP_NAME": "OrchestrationService",
+        "LOKI_PORT": "3100",
+        "PROMETHEUS_PORT": "9090",
+        "JAEGER_PORT": "4317",
+        "CORS_ORIGIN": "http://localhost:5173",
+        "ROLE_PERMISSIONS_JSON": "[{\"Role\":\"sysadmin\",\"Permissions\":[\"user:create\",\"user:read\",\"user:update\",\"user:delete\",\"course:create\",\"course:read\",\"course:update\",\"course:delete\",\"course:manage-participants\",\"lecture:create\",\"lecture:read\",\"lecture:update\",\"lecture:delete\",\"test:create\",\"test:read\",\"test:update\",\"test:delete\",\"test-question:read\",\"test-answer:read\",\"school:read\",\"school:create\",\"school:update\",\"school:delete\"],\"Scope\":\"system\"},{\"Role\":\"school-admin\",\"Permissions\":[\"user:create\",\"user:read\",\"user:update\",\"user:delete\",\"course:create\",\"course:read\",\"course:update\",\"course:delete\",\"course:enroll\",\"course:manage-participants\",\"lecture:create\",\"lecture:read\",\"lecture:update\",\"lecture:delete\",\"test:create\",\"test:read\",\"test:update\",\"test:delete\",\"test:evaluate\",\"test-question:create\",\"test-question:read\",\"test-question:update\",\"test-question:delete\",\"test-answer:create\",\"test-answer:read\",\"test-answer:update\",\"test-answer:delete\",\"test-answer:evaluate\",\"school:read\",\"school:create\",\"school:update\",\"school:delete\"],\"Scope\":\"school\"},{\"Role\":\"teacher\",\"Permissions\":[\"user:create\",\"user:read\",\"user:update\",\"course:create\",\"course:read\",\"course:update\",\"course:delete\",\"course:manage-participants\",\"lecture:create\",\"lecture:read\",\"lecture:update\",\"lecture:delete\",\"test:create\",\"test:read\",\"test:update\",\"test:delete\",\"test:evaluate\",\"test-question:create\",\"test-question:read\",\"test-question:update\",\"test-question:delete\",\"test-answer:read\",\"test-answer:update\",\"test-answer:delete\",\"test-answer:evaluate\",\"school:read\"],\"Scope\":\"school\"},{\"Role\":\"student\",\"Permissions\":[\"user:read\",\"course:read\",\"lecture:read\",\"test:read\",\"test:submit\",\"test-question:read\",\"test-answer:create\",\"test-answer:read\",\"school:read\"],\"Scope\":\"school\"},{\"Role\":\"support\",\"Permissions\":[\"user:create\",\"user:read\",\"user:update\",\"course:create\",\"course:read\",\"course:update\",\"course:delete\",\"course:manage-participants\",\"lecture:create\",\"lecture:read\",\"lecture:update\",\"lecture:delete\",\"test:create\",\"test:read\",\"test:update\",\"test:delete\",\"test-question:create\",\"test-question:read\",\"test-question:update\",\"test-question:delete\",\"test-answer:read\",\"test-answer:update\",\"test-answer:delete\",\"school:read\",\"school:create\",\"school:update\",\"school:delete\"],\"Scope\":\"system\"}]",
+        "ADMINS_JSON": "[{\"Username\":\"molic\",\"Password\":\"molicpassword\"}]",
+        "USERS_JSON": "{\"C4a\": [\"solonitsyn\"]}",
+        "ConnectionString__mongo": "mongodb://mongo:27017",
+        "JWT__SecretKey": "A_VERY_LONG_SECRET_KEY_THAT_IS_AT_LEAST_64_BYTES_LONG_FOR_HS512_1234567890",
+        "JWT__ExpireHours": "1",
+        "JWT__Issuer": "localhost/api",
+        "JWT__Audience": "localhost",
+        "JWT__RefreshTokenLifetimeDays": 14,
+        "PASSWORDHASHING__WorkFactor": "14",
+        "PASSWORDHASHING__EnhancedEntropy": "true"
       }
     },
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7259;http://localhost:5070",
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": false,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_HTTP_PORTS": "8080"
       }
     }
   }

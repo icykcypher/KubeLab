@@ -1,0 +1,47 @@
+- hosts: all
+  become: true
+  vars:
+    ssh_port: 56789  
+  tasks:
+    - name: Install python and sudo
+      apt:
+        name:
+          - python3
+          - python3-venv
+          - python3-pip
+          - acl
+          - sudo
+        state: present
+        update_cache: yes
+
+    - name: Create ansible user
+      user:
+        name: ansible
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+        create_home: yes
+
+    - name: Set NOPASSWD sudo
+      copy:
+        dest: /etc/sudoers.d/ansible
+        content: "ansible ALL=(ALL) NOPASSWD: ALL\n"
+        mode: '0440'
+
+    - name: Create venv for ansible
+      become_user: ansible
+      command: python3 -m venv /home/ansible/venv
+
+    - name: Change SSH port
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?Port\s+'
+        line: "Port {{ ssh_port }}"
+        state: present
+        backup: yes
+
+    - name: Ensure SSH service is restarted
+      systemd:
+        name: ssh
+        state: restarted
+        enabled: yes
