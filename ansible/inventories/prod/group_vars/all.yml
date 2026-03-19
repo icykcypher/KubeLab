@@ -1,23 +1,3 @@
-nginx_port: 443
-
-postgres_port: 5432
-postgres_superuser: "{{ vault_postgres_superuser }}"  
-postgres_superpassword: "{{ vault_postgres_superpassword }}"  
-postgres_superdb: "{{ vault_postgres_super_db }}"
-postgres_db: prod
-postgres_data_path: /opt/postgres/data
-postgres_php_user: "{{ vault_postgres_php_user }}"
-postgres_php_user_password: "{{ vault_postgres_php_user_password }}"
-backend_port: 8080
-backend_image: Fialovi-lososi-F-CK-AI/backend:latest
-backend_env:
-  DATABASE_URL: "pgsql://{{ postgres_php_user }}:{{ postgres_php_user_password }}@postgres:{{ postgres_port }}/{{ postgres_db }}"
-release_name: 
-prometheus_port: 9090
-grafana_port: 3000
-prometheus_config: /opt/prometheus/prometheus.yml
-
-
 deploy_user: ansible
 ssh_public_key_path: ~/.ssh/ansible_key.pub
-domain_name: pedagogium-merge.org
+domain_name: kubelab.dev.spsejecna.net

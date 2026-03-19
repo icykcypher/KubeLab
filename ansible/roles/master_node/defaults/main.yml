@@ -1,0 +1,3 @@
+# Default variables for master_node role
+kubeconfig_path: /root/.kube/config
+kind_cluster_name: kubelab

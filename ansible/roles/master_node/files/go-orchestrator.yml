@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-orchestrator
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-orchestrator
+  template:
+    metadata:
+      labels:
+        app: go-orchestrator
+    spec:
+      containers:
+      - name: go-orchestrator
+        image: ghcr.io/icykcypher/kubelab/kube-agent:latest
+        env:
+        - name: RABBITMQ_URL
+          value: "amqp://rabbitmq:5672/"

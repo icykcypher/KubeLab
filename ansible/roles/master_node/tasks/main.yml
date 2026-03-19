@@ -1,4 +1,4 @@
----
+# Main tasks for deploying all master node components
 - name: Ensure kubeconfig exists for kind cluster
   shell: kind get kubeconfig --name=kubelab
   register: kubeconfig
@@ -10,6 +10,7 @@
     dest: /root/.kube/config
     mode: '0600'
 
+# Deploy MongoDB
 - name: Deploy MongoDB StatefulSet
   k8s:
     kubeconfig: /root/.kube/config
@@ -20,6 +21,7 @@
       type: Ready
       status: "True"
 
+# Deploy Redis
 - name: Deploy Redis
   k8s:
     kubeconfig: /root/.kube/config
@@ -27,6 +29,7 @@
     definition: "{{ lookup('file', 'roles/master_node/files/redis.yml') | from_yaml }}"
     wait: yes
 
+# Deploy RabbitMQ
 - name: Deploy RabbitMQ
   k8s:
     kubeconfig: /root/.kube/config
@@ -34,6 +37,7 @@
     definition: "{{ lookup('file', 'roles/master_node/files/rabbitmq.yml') | from_yaml }}"
     wait: yes
 
+# Deploy .NET Backend
 - name: Deploy .NET Backend
   k8s:
     kubeconfig: /root/.kube/config
@@ -41,23 +45,26 @@
     definition: "{{ lookup('file', 'roles/master_node/files/backend.yml') | from_yaml }}"
     wait: yes
 
-- name: Deploy React Frontend
-  k8s:
-    kubeconfig: /root/.kube/config
-    state: present
-    definition: "{{ lookup('file', 'roles/master_node/files/frontend.yml') | from_yaml }}"
-    wait: yes
+# Deploy React Frontend
+#- name: Deploy React Frontend
+#  k8s:
+#    kubeconfig: /root/.kube/config
+#    state: present
+#    definition: "{{ lookup('file', 'roles/master_node/files/frontend.yml') | from_yaml }}"
+#    wait: yes
 
-- name: Deploy Ingress NGINX
-  k8s:
-    kubeconfig: /root/.kube/config
-    state: present
-    definition: "{{ lookup('file', 'roles/master_node/files/ingress.yml') | from_yaml }}"
-    wait: yes
-
+# Deploy Go Orchestrator
 - name: Deploy Go Orchestrator
   k8s:
     kubeconfig: /root/.kube/config
     state: present
     definition: "{{ lookup('file', 'roles/master_node/files/go-orchestrator.yml') | from_yaml }}"
+    wait: yes
+
+# Deploy Ingress NGINX
+- name: Deploy Ingress NGINX
+  k8s:
+    kubeconfig: /root/.kube/config
+    state: present
+    definition: "{{ lookup('file', 'roles/master_node/files/ingress.yml') | from_yaml }}"
     wait: yes
